@@ -17,6 +17,8 @@ class registration : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
+        supportActionBar?.hide()
+
 
         Toast.makeText(this, "Register", Toast.LENGTH_SHORT).show()
 

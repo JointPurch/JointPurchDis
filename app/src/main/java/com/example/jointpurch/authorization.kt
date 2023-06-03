@@ -17,6 +17,8 @@ class authorization : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_authorization)
+        supportActionBar?.hide()
+
 
         Toast.makeText(this, "Auth", Toast.LENGTH_SHORT).show()
 
