@@ -17,7 +17,8 @@ import kotlinx.serialization.json.Json
 import java.security.MessageDigest
 import java.util.UUID
 
-const val SERVER_ADDRESS = "http://192.168.0.12:8080/"
+const val SERVER_ADDRESS = "http://jointpurch.ddns.net:8000/"
+//const val SERVER_ADDRESS = "http://192.168.0.12:8000/"
 
 class RestApi(context: Context) {
     private var client: HttpClient
@@ -125,5 +126,30 @@ class RestApi(context: Context) {
         }
 
         return statusCode == 200
+    }
+
+    fun createRoom(name: String, logins: List<String>): Int{
+        val newRoom = Room(
+            UUID.randomUUID().toString(),
+            name,
+            null,
+            logins.toMutableList(),
+            mutableListOf()
+        )
+
+        return runBlocking {
+            val response = client.post(SERVER_ADDRESS + "room/register") {
+                contentType(ContentType.Application.Json)
+                setBody(newRoom)
+            }
+//            println("STATUS CODE: ${response.status.value}")
+            if (response.status.value == 400){
+                throw Exception("400: Bad Request")
+            }
+            if (response.status.value == 401){
+                throw Exception("401: Unauthorized")
+            }
+            response.status.value
+        }
     }
 }
