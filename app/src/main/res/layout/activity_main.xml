@@ -7,6 +7,12 @@
     android:background="@drawable/backgraund"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/room_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="my rooms"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
